@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "13.FractionSample", "Fracti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "14.CollectionsSample", "CollectionSample\14.CollectionsSample.csproj", "{7BF3725C-57EC-4A47-90E6-A4769A7EB1D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15.PathfinderSample", "PathfinderSample\15.PathfinderSample.csproj", "{75403DBE-1E22-45BA-AC9A-C6D8A66884F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{7BF3725C-57EC-4A47-90E6-A4769A7EB1D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BF3725C-57EC-4A47-90E6-A4769A7EB1D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7BF3725C-57EC-4A47-90E6-A4769A7EB1D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75403DBE-1E22-45BA-AC9A-C6D8A66884F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75403DBE-1E22-45BA-AC9A-C6D8A66884F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75403DBE-1E22-45BA-AC9A-C6D8A66884F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75403DBE-1E22-45BA-AC9A-C6D8A66884F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

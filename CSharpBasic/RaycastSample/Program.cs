@@ -65,18 +65,18 @@
 
             if(discriminant < 0)
                 Console.WriteLine("Miss");
-            else { 
-                float sqrt0fDiscriminant = (float)Math.Sqrt(discriminant);
-                float t1 =(-b + sqrt0fDiscriminant) / (2f * a);
-                float t2 = (-b -  sqrt0fDiscriminant) / (2f * a);
+            //else { 
+            //    float sqrt0fDiscriminant = (float)Math.Sqrt(discriminant);
+            //    float t1 =(-b + sqrt0fDiscriminant) / (2f * a);
+            //    float t2 = (-b -  sqrt0fDiscriminant) / (2f * a);
 
-                if(t1 >=0 && t2 >= 0) {
-                    T = Math.Min(t1, t2);
-                }
-                else if {
+            //    if(t1 >=0 && t2 >= 0) {
+            //        T = Math.Min(t1, t2);
+            //    }
+            //    else if {
 
-                }
-            }
+            //    }
+            //}
 
             
         }

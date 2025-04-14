@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 
 namespace CollectionsSample {
     internal class Program {
@@ -124,6 +125,68 @@ namespace CollectionsSample {
             foreach (object item in DummyRoutinable()) {
                 
             }
+
+            // Stack
+            // -----------------------------------------------------
+
+            MyStack<int> myStack = new MyStack<int>(5);
+            myStack.Push(1);
+            myStack.Push(4);
+            myStack.Push(1);
+            myStack.Pop();
+            Console.WriteLine(myStack.Peek());
+
+            Stack<int> stack = new Stack<int>(6);
+            stack.Push(1);
+            stack.Push(4);
+            stack.Push(1);
+            stack.Pop();
+            Console.WriteLine(stack.Peek());
+
+
+            // Queue
+            //-------------------------------------------------------------
+
+            MyQueue<string> myQueue = new MyQueue<string>(3);
+            myQueue.Enqueue("Luke");
+            myQueue.Enqueue("Carl");
+            myQueue.Enqueue("David");
+            myQueue.Enqueue("Ben");
+            myQueue.Dequeue();
+            myQueue.Enqueue("Tobi");
+            myQueue.Dequeue();
+            myQueue.Enqueue("Shun");
+            myQueue.Enqueue("Tom");
+
+            Console.Write("내 대기열 : ");
+            while (myQueue.Count > 0) {
+                Console.Write($"{myQueue.Dequeue()}, ");
+            }
+
+            Queue<string> queue = new Queue<string>(4);
+            queue.Enqueue("Hi");
+            queue.Enqueue("Bye");
+            queue.Dequeue();
+            queue.Peek();
+
+
+            // LinkedList
+            // ---------------------------------------------------------------
+
+            MyLinkedList<int> myLinkedList = new MyLinkedList<int>();
+            myLinkedList.AddLast(1);
+            myLinkedList.AddFirst(4);
+            MyLinkedListNode<int> myLInkedListNode = myLinkedList.FindLast(x => x > 0);
+
+            myLinkedList.AddAfter(myLInkedListNode, 4);
+            
+            LinkedList<int> linkedList = new LinkedList<int>();
+            linkedList.AddLast(1);
+
+            foreach (int value in myLinkedList) {
+            }
+
+            foreach(int item in linkedList) { }
         }
 
         static IEnumerator BaristaRoutin() {
