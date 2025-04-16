@@ -29,6 +29,23 @@
             }
         }
 
+        public static void InsertionSort(this int[] arr)
+        {
+            for(int i = 1; i < arr.Length; i++)
+            {
+                int key = arr[i]; // 두 번째 자리에 있는 애
+                int j = i - 1; // 첫 번째 애
+
+                while (j >= 0 && arr[j] > key)
+                {
+                    arr[j + 1] = arr[j]; // 자리 밀어냄
+                    j--;
+                }
+
+                arr[j + 1] = key; // key가 들어갈 자리
+            }
+        }
+
 
         static void Swap(this int[] arr, int index1, int index2) {
             int tmp = arr[index1];
