@@ -1,22 +1,27 @@
-﻿
-namespace PracticeOOP
-{
-    class TreasureChest : GameObject, IDamageable
-    {
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PracticeOOP {
+    class TreasureChest : GameObject, IDamageable {
         public TreasureChest(int hpMax) {
             HpMax = hpMax;
             Hp = hpMax;
         }
 
+
         public int HpMax { get; private set; }
 
-        public int Hp { 
+        public int Hp {
             get => _hp;
             private set {
-                if(value > HpMax)
+                if (value > HpMax)
                     value = HpMax;
+
                 _hp = value;
-            } 
+            }
         }
 
         public override char Symbol => '▨';
@@ -25,9 +30,6 @@ namespace PracticeOOP
 
         private int _hp;
 
-        private void GiveReward(PC pc) { }
-
-        private void DestroySell() { }
 
         public void Damage(IAttacker attacker, int amount) {
             if (amount <= 0)
@@ -38,12 +40,21 @@ namespace PracticeOOP
 
             Hp--;
 
-            if (_hp <= 0){
-                if(attacker is PC pc) {
+            if (_hp <= 0) {
+                if (attacker is PC pc) {
                     GiveReward(pc);
                 }
-                DestroySell();
+
+                DestroySelf();
             }
+        }
+
+        private void GiveReward(PC pc) {
+
+        }
+
+        private void DestroySelf() {
+
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
 namespace CollectionsSample {
     internal class Program {
@@ -65,6 +65,7 @@ namespace CollectionsSample {
                 }
             }
 
+
             IEnumerator<int> e1 = numbers1.GetEnumerator();
             IEnumerator<int> e2 = numbers2.GetEnumerator();
 
@@ -72,13 +73,13 @@ namespace CollectionsSample {
 
             }
 
-
             // foreach 구문
-            // IEnumerable 에 대해서 GetEnumerator() 호출하여
+            // IEnumerable 에 대해서 GetEnumerator() 호출하여 
             // Enumeration 을 수행하는 구문
             foreach (int item in numbers1) {
                 Console.WriteLine(item);
             }
+
 
             // List - C# 의 제네릭 동적배열
             //-------------------------------------------------------------
@@ -123,17 +124,18 @@ namespace CollectionsSample {
             }
 
             foreach (object item in DummyRoutinable()) {
-                
+
             }
 
             // Stack
-            // -----------------------------------------------------
+            //-------------------------------------------------------------
 
             MyStack<int> myStack = new MyStack<int>(5);
             myStack.Push(1);
             myStack.Push(4);
             myStack.Push(1);
             myStack.Pop();
+            myStack.Push(5);
             Console.WriteLine(myStack.Peek());
 
             Stack<int> stack = new Stack<int>(6);
@@ -142,7 +144,6 @@ namespace CollectionsSample {
             stack.Push(1);
             stack.Pop();
             Console.WriteLine(stack.Peek());
-
 
             // Queue
             //-------------------------------------------------------------
@@ -169,62 +170,148 @@ namespace CollectionsSample {
             queue.Dequeue();
             queue.Peek();
 
-
             // LinkedList
-            // ---------------------------------------------------------------
+            //-------------------------------------------------------------
 
             MyLinkedList<int> myLinkedList = new MyLinkedList<int>();
             myLinkedList.AddLast(1);
-            myLinkedList.AddFirst(4);
-            MyLinkedListNode<int> myLInkedListNode = myLinkedList.FindLast(x => x > 0);
+            myLinkedList.AddFirst(2);
+            MyLinkedListNode<int> myLinkedListNode = myLinkedList.FindLast(x => x > 0);
 
-            myLinkedList.AddAfter(myLInkedListNode, 4);
-            
+            myLinkedList.AddAfter(myLinkedListNode, 4);
+
             LinkedList<int> linkedList = new LinkedList<int>();
-            linkedList.AddLast(1);
+            linkedList.AddFirst(1);
 
             foreach (int value in myLinkedList) {
             }
 
-            foreach(int item in linkedList) { }
+            foreach (int item in linkedList) {
+            }
+
+            // LinkedList
+            //-------------------------------------------------------------
+
+            Trie trie = new Trie();
+
+            List<string> inputWords = new List<string>()
+            {
+                "apple", "App", "application", "apex", "apt",
+                "banana", "band", "bandage", "bandit", "ban",
+                "cat", "cater", "caterpillar", "cattle",
+                "dog", "dodge",
+                "elephant", "elegant", "element", "elevator",
+                "zebra", "zephyr", "zealous", "zeppelin",
+                "xylophone", "xenon",
+                "quantum", "quarrel", "queen"
+            };
+
+            foreach (string word in inputWords) {
+                trie.Add(word);
+            }
+
+            StringBuilder inputBulinder = new StringBuilder(20);
+
+            Console.Clear();
+
+            while (true) {
+                ConsoleKeyInfo keyInfo = Console.ReadKey();
+                Console.Clear();
+                ConsoleKey key = keyInfo.Key;
+
+                if (key == ConsoleKey.Backspace) {
+                    if (inputBulinder.Length > 0)
+                        inputBulinder.Remove(inputBulinder.Length - 1, 1);
+                }
+                else if ((char)key >= 'A' && (char)key <= 'Z') {
+                    inputBulinder.Append(char.ToLower((char)key));
+                }
+                else {
+                    Console.WriteLine("알파벳만 입력 가능합니다.");
+                }
+
+                string input = inputBulinder.ToString();
+                Console.WriteLine($"검색 : {input}");
+
+                List<string> startsWith = trie.StartsWith(input);
+
+                foreach (string word in startsWith) {
+                    Console.WriteLine(word);
+                }
+
+                Console.SetCursorPosition(7 + input.Length, 0);
+            }
+
+            // Dictionary (Generic Hashtable)
+            // --------------------------------------------------------
+
+            Dictionary<string, int> scores = new Dictionary<string, int>();
+            scores.Add("Luke", 50);
+            scores.Add("Carl", 70);
+            scores["Jason"] = 40;
+
+            int scoreofLuke = scores["Luke"];
+            scores.Remove("Luke");
+
+            Hashtable hashtable = new Hashtable();
+            hashtable.Add("Luke", 20);
+            hashtable["Luke"] = 40;
+
+            if (scores.TryGetValue("Carl",out int scoreOfCarl)) {
+
+            }
+
+            // pair 순회
+            foreach (KeyValuePair<string, int> pair in scores) {
+                
+            }
+
+            // key 순회
+            foreach (string key in scores.Keys) {
+            
+            }
+
+            // Value 순회
+            foreach (int key in scores.Values) {
+            }
         }
 
-        static IEnumerator BaristaRoutin() {
-            // TODO -> 주문 들어올 때까지 기다리는 로직
+        static IEnumerator BaristaRoutine() {
+            // TODO -> 주문 들어올떄까지 기다리는 로직
             yield return null;
-            // TODO -> 주문 들어온거 제조하고 제조 될 때까지 기다리는 로직
+            // TODO -> 주문들어온거 제조하고 제조 될때까지 기다리는 로직
             yield return null;
         }
 
         static IEnumerator<int> CountRoutine() {
-            yield return 1; // yield 키워드 : iEnumerable 혹은 IEnumeratoe의 MoveNext 구현을 맟 Current에 값을 리턴하는 내용을 작성할 때 사용
+            yield return 1; // yield 키워드 : IEnumerable 혹은 IEnumerator 를 반환했을때의 Enumerator 의 MoveNext 구현을 작성할때 사용
             Random random = new Random();
-            int number = random.Next(0,5 );
-            yield return 2;
+            int number = random.Next(0, 5);
+            yield return number;
             yield return 3;
-            // yield break;
+            //yield break;
         }
 
         static IEnumerable DummyRoutinable() {
-            yield return "Luke"; // yield 키워드 : iEnumerable 혹은 IEnumeratoe의 MoveNext 구현을 맟 Current에 값을 리턴하는 내용을 작성할 때 사용
+            yield return "Luke"; // yield 키워드 : IEnumerable 혹은 IEnumerator 의 MoveNext 구현을 작성할때 사용
             yield return 3.5f;
             yield return 'A';
-            // yield break;
+            //yield break;
         }
 
         class CountRoutineEnumerator : IEnumerator<int> {
-            public int Current => throw new NotImplementedException();
+            public int Current => _current;
 
             object IEnumerator.Current => Current;
             int _index;
             int _current;
 
             public bool MoveNext() {
-                if(_index == 0)
+                if (_index == 0)
                     _current = 1;
                 else if (_index == 1)
                     _current = 2;
-                else if(_index == 2)
+                else if (_index == 2)
                     _current = 3;
                 else
                     return false;
@@ -239,9 +326,7 @@ namespace CollectionsSample {
             }
 
             public void Dispose() {
-
             }
         }
-
     }
 }
