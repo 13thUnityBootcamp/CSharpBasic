@@ -15,6 +15,9 @@ namespace SortAlgorithms {
             // arr.RecursiveMergeSort(); // 1000만개, 난수범위 0~1000만에서 3400ms
             arr.MergeSort(); // 1000만개, 난수범위 0~1000만 
 
+            // C#의 Sort는
+            // 퀵정렬이 기본이나 파티션수가 적을떄, 삽입정렬, 파티션수가 2log N 이상 많아질때 합정렬로 전환
+
             stopwatch.Stop();
             Console.WriteLine($"정렬 걸린 시간 : {stopwatch.ElapsedMilliseconds} ms");
 

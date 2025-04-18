@@ -164,12 +164,17 @@
             int current = arr.Length - 1;
 
             while (current >= 0) {
-                SIFT
+                SIFTDown(arr,current--, arr.Length - 1);
             }
         }
 
         private static void InverseHeapify(int[] arr) {
+            int end = arr.Length - 1;
 
+            while (end > 0) {
+                Swap(arr, 0, end--);
+                SIFTDown(arr, 0, end);
+            }
         }
 
         private static void SIFTDown(int[] arr, int current, int end) {
