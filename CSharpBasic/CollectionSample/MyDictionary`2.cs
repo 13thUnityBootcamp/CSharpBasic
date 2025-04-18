@@ -1,6 +1,16 @@
 ﻿using System;
 
 namespace CollectionsSample {
+    /// <summary>
+    /// C#의 HashTable 클래스 - object 타입 key/value 쌍을 저장하기 위해 구현한 클래스 (object 타입으로 관리하는 HashMap)
+    /// - 충돌 해결 : 오픈어드레싱 (충돌시 일정 규칙을 따라 다음 인덱스 탐색)
+    /// 
+    /// C#의 Dirtionary`2 클래스 - 제네릭한 HashMap / HashTable 자료구조를 구현한 클래스
+    /// - 충돌 해결 : 체이닝 (충돌시 연결된 다음 인덱스 탐색)
+    /// 
+    /// </summary>
+    /// <typeparam name="TKey"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     class MyDictionary<TKey, TValue> {
         public MyDictionary(int capacity) {
             _buckets = new int[capacity];

@@ -1,14 +1,27 @@
-﻿namespace SortAlgorithms {
+﻿using System.Diagnostics;
+
+namespace SortAlgorithms {
     internal class Program {
         static void Main(string[] args) {
-            int[] arr = { 7, 3, 3, 2, 8, 5, 0 };
-            arr.BubbleSort();
-            arr.InsertionSort();
+            Random random = new Random();
+            int[] arr = Enumerable.Repeat(0, 100000) // 0 아이템 10만개짜리 자료를 생성
+                                  .Select(x=> random.Next(0, 100000)) // 자료전체 순회하면서 x에 대해 0~10만 사이 값 난수를 반환한 값으로 새 자료 생성
+                                  .ToArray(); // 배열로 변경
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
-            Console.Write("정렬됨 : ");
-            for (int i = 0; i < arr.Length; i++) {
-                Console.Write($"{arr[i]}, ");
-            }
+            // arr.BubbleSort(); // 10만개, 난수범위 0~10만에서 39500ms
+            // arr.SelectionSort(); // 10만개, 난수번위 0 ~10만 에서 119000ms
+            // arr.InsertionSort(); // 10만개, 난수범위 0~10만 에서 7450ms
+            // arr.RecursiveMergeSort(); // 1000만개, 난수범위 0~1000만에서 3400ms
+            arr.MergeSort(); // 1000만개, 난수범위 0~1000만 
+
+            stopwatch.Stop();
+            Console.WriteLine($"정렬 걸린 시간 : {stopwatch.ElapsedMilliseconds} ms");
+
+            //Console.Write("정렬됨 : ");
+            //for (int i = 0; i < arr.Length; i++) {
+            //    Console.Write($"{arr[i]}, ");
+            //}
         }
     }
 }
