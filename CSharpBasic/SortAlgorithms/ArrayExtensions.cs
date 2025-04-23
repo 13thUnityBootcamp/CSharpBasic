@@ -177,15 +177,33 @@
             }
         }
 
-        private static void SIFTDown(int[] arr, int current, int end) {
+         private static void SIFTDown(int[] arr, int current, int end)
+        {
             int leftChild = current * 2 + 1;
 
-            while (leftChild <= end){
+            // 더이상 아래로 스왑이 불가능할때까지 반복
+            while (leftChild <= end)
+            {
                 int rightChild = leftChild + 1;
                 int priorityChild = leftChild;
 
-                if(rightChild < end && arr[rightChild > arr[leftChild > arr[leftChild]{
+                // 오른쪽 자식이 있으면서, 오른쪽자식이 왼쪽자식보다 크면 우선순위 바꿈
+                if (rightChild <= end &&
+                    arr[rightChild] > arr[leftChild])
+                {
                     priorityChild = rightChild;
+                }
+
+                // 자식의 우선순위가 더 높은지 확인 후 스왑
+                if (arr[priorityChild] > arr[current])
+                {
+                    Swap(arr, priorityChild, current);
+                    current = priorityChild;
+                    leftChild = current * 2 + 1;
+                }
+                else
+                {
+                    break;
                 }
             }
         }
